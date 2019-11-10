@@ -29,7 +29,7 @@ public class FXML_homepageController implements Initializable {
      */
     
     @FXML
-    private void handleGoButton(ActionEvent event) throws IOException  {
+    private void handleGoButton(ActionEvent event) throws IOException {
         // Load new FXML Scene when button is clicked
         Parent budget_page_parent = FXMLLoader.load(getClass().getResource("FXML_Budget.fxml"));
         Scene budget_page_scene = new Scene(budget_page_parent);
@@ -38,7 +38,17 @@ public class FXML_homepageController implements Initializable {
         screen1.setScene(budget_page_scene);
         screen1.show();
     }
-    
+
+    @FXML
+    private void handleSeeAllTransactionsButton(ActionEvent event) throws IOException {
+        Parent transactionsPageParent = FXMLLoader.load(getClass().getResource("FXML_Transactions.fxml"));
+        Scene TransactionsPageScene = new Scene((transactionsPageParent));
+        Stage TransactionsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        TransactionsStage.setScene(TransactionsPageScene);
+        TransactionsStage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

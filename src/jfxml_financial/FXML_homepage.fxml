@@ -56,6 +56,8 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
         </items>
       </SplitPane>
-      <Button layoutX="45.0" layoutY="410.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="510.0" text="See All Transactions" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" />
+      <Button layoutX="45.0" layoutY="410.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="510.0"
+              text="See All Transactions" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0"
+              fx:id="seeAllTransactionsButton" onAction="#handleSeeAllTransactionsButton"/>
    </children>
 </AnchorPane>
