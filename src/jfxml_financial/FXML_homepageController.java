@@ -17,17 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author sjanv
- */
 public class FXML_homepageController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    
     @FXML
     private void handleGoButton(ActionEvent event) throws IOException {
         // Load new FXML Scene when button is clicked

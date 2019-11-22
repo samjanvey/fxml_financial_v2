@@ -17,10 +17,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- *
- * @author sjanv
- */
 public class FXMLDocumentController implements Initializable {
     Model model;
     
