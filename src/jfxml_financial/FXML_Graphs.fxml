@@ -1,14 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="jfxml_financial.FXML_GraphsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="800.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxml_financial.FXML_GraphsController">
+   <children>
+      <RadioButton layoutX="284.0" layoutY="151.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="1 week" />
+      <RadioButton layoutX="284.0" layoutY="198.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="79.0" text="1 month" />
+      <RadioButton layoutX="284.0" layoutY="244.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="79.0" text="3 months" />
+      <RadioButton layoutX="284.0" layoutY="625.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="1 week" />
+      <RadioButton layoutX="284.0" layoutY="672.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="79.0" text="1 month" />
+      <RadioButton layoutX="284.0" layoutY="718.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="79.0" text="3 months" />
+      <TextArea layoutX="14.0" layoutY="312.0" prefHeight="47.0" prefWidth="270.0" text="Saving">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <TextArea layoutX="14.0" layoutY="73.0" prefHeight="48.0" prefWidth="270.0" text="Spending">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <TextArea prefHeight="66.0" prefWidth="307.0" text="Graphs">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextArea>
+      <MenuBar layoutX="5.0" layoutY="41.0" prefHeight="24.0" prefWidth="400.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="View">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <LineChart layoutX="5.0" layoutY="603.0" prefHeight="197.0" prefWidth="270.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart layoutX="5.0" layoutY="358.0" prefHeight="197.0" prefWidth="270.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart layoutX="5.0" layoutY="122.0" prefHeight="190.0" prefWidth="270.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <RadioButton layoutX="284.0" layoutY="393.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="1 week" />
+      <RadioButton layoutX="284.0" layoutY="440.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="79.0" text="1 month" />
+      <RadioButton layoutX="284.0" layoutY="486.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="79.0" text="3 months" />
+      <TextArea layoutX="14.0" layoutY="561.0" prefHeight="47.0" prefWidth="270.0" text="Net Funds">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+   </children>
 </AnchorPane>

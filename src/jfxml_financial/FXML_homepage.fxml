@@ -47,9 +47,9 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="143.0" prefWidth="508.0">
                <children>
-                  <RadioButton layoutX="53.0" layoutY="63.0" mnemonicParsing="false" text="Budget" fx:id="radioBudget" />
-                  <RadioButton layoutX="204.0" layoutY="63.0" mnemonicParsing="false" text="Stats" />
-                  <RadioButton layoutX="362.0" layoutY="63.0" mnemonicParsing="false" text="Use Case" />
+                  <RadioButton layoutX="53.0" layoutY="63.0" mnemonicParsing="false" text="Budgets" fx:id="radioBudget" onAction="#handleBudgetsRadioButton" />
+                  <RadioButton layoutX="204.0" layoutY="63.0" mnemonicParsing="false" text="Stats/Graphs" onAction="#handleStatsGraphsButton"/>
+                  <RadioButton layoutX="362.0" layoutY="63.0" mnemonicParsing="false" text="Transactions" onAction="#handleTransactionsButton"/>
                   <Button layoutX="225.0" layoutY="106.0" mnemonicParsing="false" text="Go" fx:id="goButton" onAction="#handleGoButton" />
                </children>
             </AnchorPane>
