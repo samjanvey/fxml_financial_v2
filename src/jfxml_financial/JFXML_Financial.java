@@ -13,7 +13,6 @@ import javafx.stage.Stage;
  * @author sjanv
  */
 public class JFXML_Financial extends Application {
-    Model model;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -23,7 +22,6 @@ public class JFXML_Financial extends Application {
         
         stage.setScene(scene);
         stage.show();
-        model = new Model();
     }
 
     /**

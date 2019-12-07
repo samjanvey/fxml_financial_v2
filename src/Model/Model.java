@@ -4,14 +4,25 @@ import java.util.ArrayList;
 
 public class Model
 {    
-    UserList userList;
+    private SerializedDataCollection sdc;
     
     public Model()
     {
-        userList = new UserList();
+        sdc = new SerializedDataCollection();
     }
-    
-    public UserList getUserList() {
-        return this.userList;
+
+    /**
+     * @return the sdc
+     */
+    public SerializedDataCollection getSdc() {
+        return sdc;
     }
+
+    /**
+     * @param sdc the sdc to set
+     */
+    public void setSdc(SerializedDataCollection sdc) {
+        this.sdc = sdc;
+    }
+
 }
