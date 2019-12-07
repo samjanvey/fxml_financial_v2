@@ -1,10 +1,11 @@
 package Model;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Transaction {
+public class Transaction implements Serializable {
 
     LocalDate date;
     String transactionName;

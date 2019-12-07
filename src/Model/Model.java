@@ -4,14 +4,18 @@ import java.util.ArrayList;
 
 public class Model
 {    
-    UserList userList;
+    SerializedDataCollection serializedDataCollection;
     
     public Model()
     {
-        userList = new UserList();
+        serializedDataCollection = new SerializedDataCollection();
     }
-    
-    public UserList getUserList() {
-        return this.userList;
+
+    public SerializedDataCollection getSerializedDataCollection() {
+        return serializedDataCollection;
+    }
+
+    public void setSerializedDataCollection(SerializedDataCollection serializedDataCollection) {
+        this.serializedDataCollection = serializedDataCollection;
     }
 }

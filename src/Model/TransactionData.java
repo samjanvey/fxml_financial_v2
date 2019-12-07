@@ -3,7 +3,10 @@ package Model;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,49 +15,76 @@ import java.util.Random;
 public class TransactionData {
 
     private ArrayList<Transaction> transactions = new ArrayList<>();
+    private Integer transactionsSize;
+    private String fileName;
 
     public TransactionData() {
 
-        this.readTransactionsFile();
+        fileName = "transactionData.xml";
+
+        this.jaxbXmlFileToObject(fileName);
         if(transactions.isEmpty() || transactions == null) {
             this.createTestTransactionsData();
+            transactionsSize = transactions.size();
             this.writeTransactionsFile();
-            this.readTransactionsFile();
+            this.jaxbXmlFileToObject(fileName);
         }
         this.printTransactions();
 
 
     }
 
-    private void readTransactionsFile() {
-
-    }
-
-
-    private void writeTransactionsFile() {
+    private void writeTransactionsFile() throws JAXBException, FileNotFoundException {
         for(int j = 0; j < transactions.size(); j++) {
-            jaxbObjectToXML(transactions.get(j));
+            jaxbObjectToXML(transactions.get(j), transactions);
         }
     }
 
-    private static void jaxbObjectToXML(Transaction transaction)
-    {
+    private static void jaxbObjectToXML(Transaction transaction, ArrayList<Transaction> transactions) throws JAXBException, FileNotFoundException {
+        JAXBContext contextObj = JAXBContext.newInstance(Transaction.class);
+
+        Marshaller marshallerObj = contextObj.createMarshaller();
+        marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        FileOutputStream fos = new FileOutputStream("transactionData.xml");
+        for(int i = 0; i < transactions.size(); i++) {
+            marshallerObj.marshal(transactions.get(i), fos);
+        }
+//        try
+//        {
+//            //Create JAXB Context
+//            JAXBContext jaxbContext = JAXBContext.newInstance(Transaction.class);
+//
+//            //Create Marshaller
+//            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//
+//            //Required formatting??
+//            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+//
+//            //Store XML to File
+//            File file = new File("transactionData.xml");
+//
+//            //Writes XML file to file-system
+//            jaxbMarshaller.marshal(transaction, file);
+//        }
+//        catch (JAXBException e)
+//        {
+//            e.printStackTrace();
+//        }
+    }
+
+    private static void jaxbXmlFileToObject(String fileName) {
+
+        File xmlFile = new File(fileName);
+
+        JAXBContext jaxbContext;
         try
         {
-            //Create JAXB Context
-            JAXBContext jaxbContext = JAXBContext.newInstance(Transaction.class);
+            jaxbContext = JAXBContext.newInstance(Transaction.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            Transaction transaction = (Transaction) jaxbUnmarshaller.unmarshal(xmlFile);
 
-            //Create Marshaller
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            //Required formatting??
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-            //Store XML to File
-            File file = new File("transactionData.xml");
-
-            //Writes XML file to file-system
-            jaxbMarshaller.marshal(transaction, file);
+            System.out.println(transaction);
         }
         catch (JAXBException e)
         {
