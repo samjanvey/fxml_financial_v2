@@ -1,94 +1,57 @@
 package Model;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 
 public class TransactionData {
 
     private ArrayList<Transaction> transactions = new ArrayList<>();
-    private Integer transactionsSize;
-    private String fileName;
+    private final String pathname = "transactions.ser";
+    private Transaction testTransaction;
 
-    public TransactionData() throws JAXBException, FileNotFoundException {
+    public TransactionData() {
 
-        fileName = "transactionData.xml";
-
-        this.jaxbXmlFileToObject(fileName);
+        this.readTransactionsFile();
         if(transactions.isEmpty() || transactions == null) {
             this.createTestTransactionsData();
-            transactionsSize = transactions.size();
             this.writeTransactionsFile();
-            this.jaxbXmlFileToObject(fileName);
+            this.readTransactionsFile();
         }
         this.printTransactions();
 
-
     }
 
-    private void writeTransactionsFile() throws JAXBException, FileNotFoundException {
-        for(int j = 0; j < transactions.size(); j++) {
-            jaxbObjectToXML(transactions.get(j), transactions);
+    private void writeTransactionsFile() {
+        try {
+            FileOutputStream fos = new FileOutputStream(pathname);
+            ObjectOutputStream out = new ObjectOutputStream(fos);
+            out.writeObject(transactions);
+            out.close();
+            fos.close();
+            System.out.println("Transactions have been serialized");
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
-    private static void jaxbObjectToXML(Transaction transaction, ArrayList<Transaction> transactions) throws JAXBException, FileNotFoundException {
-        JAXBContext contextObj = JAXBContext.newInstance(Transaction.class);
-
-        Marshaller marshallerObj = contextObj.createMarshaller();
-        marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-        FileOutputStream fos = new FileOutputStream("transactionData.xml");
-        for(int i = 0; i < transactions.size(); i++) {
-            marshallerObj.marshal(transactions.get(i), fos);
+    private void readTransactionsFile() {
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+        try {
+            fis = new FileInputStream(pathname);
+            in = new ObjectInputStream(fis);
+            transactions = (ArrayList<Transaction>) in.readObject();
+            in.close();
+            fis.close();
+            if(!transactions.isEmpty()) {
+                System.out.println("There are Transactions in the TransactionData");
+            }
         }
-//        try
-//        {
-//            //Create JAXB Context
-//            JAXBContext jaxbContext = JAXBContext.newInstance(Transaction.class);
-//
-//            //Create Marshaller
-//            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-//
-//            //Required formatting??
-//            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-//
-//            //Store XML to File
-//            File file = new File("transactionData.xml");
-//
-//            //Writes XML file to file-system
-//            jaxbMarshaller.marshal(transaction, file);
-//        }
-//        catch (JAXBException e)
-//        {
-//            e.printStackTrace();
-//        }
-    }
-
-    private static void jaxbXmlFileToObject(String fileName) {
-
-        File xmlFile = new File(fileName);
-
-        JAXBContext jaxbContext;
-        try
-        {
-            jaxbContext = JAXBContext.newInstance(Transaction.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Transaction transaction = (Transaction) jaxbUnmarshaller.unmarshal(xmlFile);
-
-            System.out.println(transaction);
-        }
-        catch (JAXBException e)
-        {
-            e.printStackTrace();
+        catch(IOException | ClassNotFoundException ex){
+            ex.printStackTrace();
         }
     }
 
@@ -106,9 +69,7 @@ public class TransactionData {
             int minDay = (int) LocalDate.of(2018, 1, 1).toEpochDay();
             int maxDay = (int) LocalDate.of(2019, 12, 31).toEpochDay();
             long randomDay = minDay + random.nextInt(maxDay - minDay);
-
             LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
-
             tempDate = randomDate;
 
             //Generate transaction name
@@ -120,18 +81,22 @@ public class TransactionData {
 
             //Randomize transaction type
             tempType = random.nextInt(3);
-
             tempTransaction = new Transaction(tempDate, tempTransactionName, tempAmount, tempType);
             transactions.add(tempTransaction);
         }
     }
 
-    private void printTransactions() {
 
+    private void printTransactions() {
+        System.out.println("TransactionData has the following transactions: ");
+        for(int i = 0; i < transactions.size(); i++) {
+            Transaction temp = (Transaction) transactions.get(i);
+            System.out.println(temp.getAttributes());
+        }
     }
 
     public static String getRandomDoubleValue(final Random random,
-       final int lowerBound, final int upperBound, final int decimalPlaces){
+                                              final int lowerBound, final int upperBound, final int decimalPlaces){
 
         if(lowerBound < 0 || upperBound <= lowerBound || decimalPlaces < 0){
             throw new IllegalArgumentException("Put error message here");
@@ -145,16 +110,6 @@ public class TransactionData {
 
     }
 
-//    private static int getRandomNumberInRange(int min, int max) {
-//
-//        if (min >= max) {
-//            throw new IllegalArgumentException("max must be greater than min");
-//        }
-//
-//        Random r = new Random();
-//        return r.nextInt((max - min) + 1) + min;
-//    }
-
     public ArrayList<Transaction> getTransactions() {
         return transactions;
     }
@@ -163,3 +118,4 @@ public class TransactionData {
         this.transactions = transactions;
     }
 }
+

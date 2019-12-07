@@ -1,9 +1,9 @@
 package Model;
 
-
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
+
 
 public class Transaction implements Serializable {
 
@@ -17,6 +17,31 @@ public class Transaction implements Serializable {
         this.transactionName = transactionName;
         this.amount = amount;
         this.type = type;
+    }
+
+    public ArrayList<String> getAttributes() {
+        ArrayList<String> attributes = new ArrayList<String>();
+        for(int i = 0; i < 4; i++){
+            attributes.add(getAttribute(i));
+        }
+
+        return attributes;
+    }
+
+    public String getAttribute(int n) {
+
+        switch (n) {
+            case 0:
+                return getDate().toString();
+            case 1:
+                return getTransactionName();
+            case 2:
+                return getAmount().toString();
+            case 3:
+                return getType().toString();
+            default:
+                return "getAttribute error";
+        }
     }
 
     public LocalDate getDate() {
@@ -51,3 +76,4 @@ public class Transaction implements Serializable {
         this.type = type;
     }
 }
+

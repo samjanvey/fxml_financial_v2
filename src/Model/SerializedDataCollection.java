@@ -1,14 +1,11 @@
 package Model;
 
-import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
-
 public class SerializedDataCollection {
 
-    private UserList userList;
-    private TransactionData transactionData;
+    UserList userList;
+    TransactionData transactionData;
 
-    public SerializedDataCollection() throws JAXBException, FileNotFoundException {
+    public SerializedDataCollection() {
         userList = new UserList();
         transactionData = new TransactionData();
     }

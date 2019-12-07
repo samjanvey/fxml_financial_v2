@@ -20,12 +20,10 @@ import javafx.stage.Stage;
 
 public class FXMLDocumentController implements Initializable {
 
-    SerializedDataCollection sdc;
     @FXML TextField userField;
     @FXML PasswordField passwordField;
     @FXML Label badLogin;
-    
-    
+
     
     @FXML
     private Label label;
