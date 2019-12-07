@@ -1,17 +1,22 @@
 package Model;
 
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Model
 {    
-    UserList userList;
+    SerializedDataCollection sdc;
     
-    public Model()
-    {
-        userList = new UserList();
+    public Model() throws JAXBException, FileNotFoundException {
+        sdc = new SerializedDataCollection();
     }
-    
-    public UserList getUserList() {
-        return this.userList;
+
+    public SerializedDataCollection getSdc() {
+        return sdc;
+    }
+
+    public void setSdc(SerializedDataCollection sdc) {
+        this.sdc = sdc;
     }
 }

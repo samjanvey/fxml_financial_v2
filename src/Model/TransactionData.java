@@ -18,7 +18,7 @@ public class TransactionData {
     private Integer transactionsSize;
     private String fileName;
 
-    public TransactionData() {
+    public TransactionData() throws JAXBException, FileNotFoundException {
 
         fileName = "transactionData.xml";
 
