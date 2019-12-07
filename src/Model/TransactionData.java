@@ -1,5 +1,9 @@
 package Model;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +17,7 @@ public class TransactionData {
 
         this.readTransactionsFile();
         if(transactions.isEmpty() || transactions == null) {
-            this.createTestTransactionsFile();
+            this.createTestTransactionsData();
             this.writeTransactionsFile();
             this.readTransactionsFile();
         }
@@ -26,16 +30,45 @@ public class TransactionData {
 
     }
 
-    private void createTestTransactionsFile() {
-
-    }
 
     private void writeTransactionsFile() {
-        LocalDate tempDate;
+        for(int j = 0; j < transactions.size(); j++) {
+            jaxbTransactionToXML(transactions.get(j));
+        }
+    }
+
+    private static void jaxbObjectToXML(Transaction transaction)
+    {
+        try
+        {
+            //Create JAXB Context
+            JAXBContext jaxbContext = JAXBContext.newInstance(Transaction.class);
+
+            //Create Marshaller
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            //Required formatting??
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            //Store XML to File
+            File file = new File("transactionData.xml");
+
+            //Writes XML file to file-system
+            jaxbMarshaller.marshal(Transaction, file);
+        }
+        catch (JAXBException | JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void createTestTransactionsData() {
+        LocalDate tempDate = LocalDate.of(Integer.parseInt("2017"), Integer.parseInt("12"), Integer.parseInt("31"));
         String tempTransactionName = "default";
         Double tempAmount = 0.0;
         Integer tempType = 0;
         Transaction defaultTransaction = new Transaction(tempDate, tempTransactionName, tempAmount, tempType);
+        Transaction tempTransaction = new Transaction(tempDate, tempTransactionName, tempAmount, tempType);
 
         for(int i = 0; i < 100; i++) {
             //Randomize transaction date
@@ -52,11 +85,33 @@ public class TransactionData {
             tempTransactionName = "placeholder" + i;
 
             //Randomize transaction amount
-            
+            Random doubleRandom = new Random();
+            tempAmount = Double.parseDouble(getRandomDoubleValue(doubleRandom, 0, 1499, 2));
+
+            //Randomize transaction type
+            tempType = random.nextInt(3);
+
+            tempTransaction = new Transaction(tempDate, tempTransactionName, tempAmount, tempType);
+            transactions.add(tempTransaction);
         }
     }
 
     private void printTransactions() {
+
+    }
+
+    public static String getRandomDoubleValue(final Random random,
+       final int lowerBound, final int upperBound, final int decimalPlaces){
+
+        if(lowerBound < 0 || upperBound <= lowerBound || decimalPlaces < 0){
+            throw new IllegalArgumentException("Put error message here");
+        }
+
+        final double dbl =
+                ((random == null ? new Random() : random).nextDouble() //
+                        * (upperBound - lowerBound))
+                        + lowerBound;
+        return String.format("%." + decimalPlaces + "f", dbl);
 
     }
 
