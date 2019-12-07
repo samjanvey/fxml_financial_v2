@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxml_financial.FXML_TransactionsController">
+<AnchorPane prefHeight="800.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxml_financial.FXML_TransactionsController">
    <children>
       <TextArea prefHeight="66.0" prefWidth="307.0" text="Transactions">
          <font>
@@ -51,6 +51,6 @@
             <TableColumn prefWidth="99.0" text="Type" />
         </columns>
       </TableView>
-      <Button layoutX="303.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="97.0" text="Close App" />
+      <Button layoutX="302.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="25.0" prefWidth="84.0" text="Back" />
    </children>
 </AnchorPane>
