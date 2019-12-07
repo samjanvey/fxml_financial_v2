@@ -33,7 +33,7 @@ public class TransactionData {
 
     private void writeTransactionsFile() {
         for(int j = 0; j < transactions.size(); j++) {
-            jaxbTransactionToXML(transactions.get(j));
+            jaxbObjectToXML(transactions.get(j));
         }
     }
 
@@ -54,9 +54,9 @@ public class TransactionData {
             File file = new File("transactionData.xml");
 
             //Writes XML file to file-system
-            jaxbMarshaller.marshal(Transaction, file);
+            jaxbMarshaller.marshal(transaction, file);
         }
-        catch (JAXBException | JAXBException e)
+        catch (JAXBException e)
         {
             e.printStackTrace();
         }
