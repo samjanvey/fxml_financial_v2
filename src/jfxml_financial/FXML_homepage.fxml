@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="jfxml_financial.FXML_homepageController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfxml_financial.FXML_homepageController">
    <children>
       <MenuBar layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -47,17 +48,23 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="143.0" prefWidth="508.0">
                <children>
-                  <RadioButton layoutX="53.0" layoutY="63.0" mnemonicParsing="false" text="Budgets" fx:id="radioBudget" onAction="#handleBudgetsRadioButton" />
-                  <RadioButton layoutX="204.0" layoutY="63.0" mnemonicParsing="false" text="Stats/Graphs" onAction="#handleStatsGraphsButton"/>
-                  <RadioButton layoutX="362.0" layoutY="63.0" mnemonicParsing="false" text="Transactions" onAction="#handleTransactionsButton"/>
-                  <Button layoutX="225.0" layoutY="106.0" mnemonicParsing="false" text="Go" fx:id="goButton" onAction="#handleGoButton" />
+                  <RadioButton fx:id="radioBudget" layoutX="53.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleBudgetsRadioButton" text="Budgets" />
+                  <RadioButton layoutX="204.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleStatsGraphsButton" text="Stats/Graphs" />
+                  <RadioButton layoutX="362.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleTransactionsButton" text="Transactions" />
+                  <Button fx:id="goButton" layoutX="225.0" layoutY="106.0" mnemonicParsing="false" onAction="#handleGoButton" text="Go" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Button fx:id="goButton1" layoutX="193.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleSeeMoreDirectivesButton" text="See More Directives" />
+                  <Label layoutX="58.0" layoutY="45.0" text="Your spending is 112% higher this week than last.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
         </items>
       </SplitPane>
-      <Button layoutX="45.0" layoutY="410.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="510.0"
-              text="See All Transactions" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0"
-              fx:id="seeAllTransactionsButton" onAction="#handleSeeAllTransactionsButton"/>
+      <Button fx:id="seeAllTransactionsButton" layoutX="45.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleSeeAllTransactionsButton" prefHeight="25.0" prefWidth="510.0" text="See All Transactions" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" />
    </children>
 </AnchorPane>

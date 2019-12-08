@@ -1,4 +1,3 @@
-
 package jfxml_financial;
 
 import java.io.IOException;

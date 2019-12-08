@@ -75,6 +75,16 @@ public class FXML_homepageController implements Initializable {
         radioButtonSelection = 3;
     }
 
+    @FXML
+    private void handleSeeMoreDirectivesButton(ActionEvent event) throws IOException {
+        Parent directivesPageParent = FXMLLoader.load(getClass().getResource("FXML_Directives.fxml"));
+        Scene directivesPageScene = new Scene((directivesPageParent));
+        Stage directivesStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        directivesStage.setScene(directivesPageScene);
+        directivesStage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
